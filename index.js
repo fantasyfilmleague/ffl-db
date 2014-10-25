@@ -68,10 +68,10 @@ exports.queryOne = function (sql, params, callback) {
 
   query(sql, effectiveParams, function (error, result) {
     if (error) {
-      return callback(error);
+      return effectiveCallback(error);
     }
 
-    callback(null, _.first(result.rows));
+    effectiveCallback(null, _.first(result.rows));
   });
 };
 
