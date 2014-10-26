@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+var dotenv = require('dotenv');
+var execFile = require('child_process').execFile;
+
+dotenv.load();
+
+execFile('../scripts/reset.sh', [], {
+  cwd: '../scripts',
+  env: process.env
+});
