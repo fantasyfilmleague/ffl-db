@@ -5,7 +5,13 @@ var execFile = require('child_process').execFile;
 
 dotenv.load();
 
-execFile('../scripts/reset.sh', [], {
-  cwd: '../scripts',
-  env: process.env
+var args = [];
+var options = {cwd: '../scripts', env: process.env};
+
+execFile('../scripts/reset.sh', args, options, function (error, stdout) {
+  if (error) {
+    return console.log(error);
+  }
+
+  console.log(stdout.toString());
 });
