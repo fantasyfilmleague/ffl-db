@@ -1,7 +1,7 @@
 {
   "name": "ffl-db",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Fantasy Film League Database",
   "main": "index.js",
   "bin": {

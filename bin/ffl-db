@@ -1,17 +1,20 @@
 #!/usr/bin/env node
 
 var dotenv = require('dotenv');
+var path = require('path');
 var execFile = require('child_process').execFile;
 
 dotenv.load();
 
 var args = [];
-var options = {cwd: '../scripts', env: process.env};
+var file = path.join(path.dirname(__filename), '../scripts/reset.sh');
+var options = {env: process.env};
 
-execFile('../scripts/reset.sh', args, options, function (error, stdout) {
+execFile(file, args, options, function (error, stdout, stderr) {
+  console.log(stdout.toString());
+  console.log(stderr.toString());
+
   if (error) {
     return console.log(error);
   }
-
-  console.log(stdout.toString());
 });
