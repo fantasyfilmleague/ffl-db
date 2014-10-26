@@ -1,7 +1,7 @@
 {
   "name": "ffl-db",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Fantasy Film League Database",
   "main": "index.js",
   "bin": {
@@ -13,6 +13,7 @@
   "author": "Bird Duck Software",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "0.4.0",
     "pg": "3.6.2",
     "underscore": "1.7.0"
   }
