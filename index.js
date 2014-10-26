@@ -94,6 +94,4 @@ function executeSqlFile(file, connectionString, callback) {
   });
 }
 
-exports.createDatabase = executeSqlFile.bind(null, './sql/create.sql');
-exports.deleteDatabase = executeSqlFile.bind(null, './sql/delete.sql');
 exports.createSchema = executeSqlFile.bind(null, './sql/schema.sql');
