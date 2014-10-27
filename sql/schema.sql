@@ -13,13 +13,26 @@ CREATE TABLE users
 CREATE TABLE leagues
 (
   id SERIAL NOT NULL UNIQUE,
-  commissioner_id INT NOT NULL REFERENCES users,
   name TEXT NOT NULL,
   is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
   created_at TIMESTAMPTZ NOT NULL,
   updated_at TIMESTAMPTZ,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE members
+(
+  id SERIAL NOT NULL UNIQUE,
+  user_id INT NOT NULL REFERENCES users,
+  league_id INT NOT NULL REFERENCES leagues,
+  is_commissioner BOOLEAN NOT NULL DEFAULT FALSE,
+  created_at TIMESTAMPTZ NOT NULL,
+  updated_at TIMESTAMPTZ,
+  PRIMARY KEY (id)
+);
+
+ALTER TABLE members ADD UNIQUE (user_id, league_id);
+ALTER TABLE members ADD UNIQUE (league_id, is_commissioner);
 
 CREATE TABLE seasons
 (
@@ -35,7 +48,7 @@ CREATE TABLE seasons
 CREATE TABLE teams
 (
   id SERIAL NOT NULL UNIQUE,
-  owner_id INT NOT NULL REFERENCES users,
+  member_id INT NOT NULL REFERENCES members,
   season_id INT NOT NULL REFERENCES seasons,
   name TEXT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL,
@@ -43,4 +56,4 @@ CREATE TABLE teams
   PRIMARY KEY (id)
 );
 
-ALTER TABLE teams ADD UNIQUE (owner_id, season_id);
+ALTER TABLE teams ADD UNIQUE (member_id, season_id);
