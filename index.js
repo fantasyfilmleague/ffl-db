@@ -53,7 +53,15 @@ var query = exports.query = function (sql, params, callback) {
       return effectiveCallback(error);
     }
 
-    client.query(effectiveSql, effectiveParams, effectiveCallback);
+    client.query(effectiveSql, effectiveParams, function (error, result) {
+      done();
+
+      if (error) {
+        return effectiveCallback(error);
+      }
+
+      effectiveCallback(null, result);
+    });
   });
 };
 
